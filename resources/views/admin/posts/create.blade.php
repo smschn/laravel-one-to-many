@@ -14,7 +14,7 @@
                 <select id="categoryId" name="category_id" class="form-control @error('category_id') is-invalid @enderror">
                     <option {{(old('category_id')=="")?'selected':''}} value="">No category selected</option>
                     @foreach ($categories as $category)
-                        <option {{(old('category_id')==$category->id)?'selected':''}} value="{{$category->id}}">{{$category->name}}</option>
+                        <option {{(old('category_id')==$category->id)?'selected':''}} value="{{$category->id}}">{{$category->name}}</option> {{-- value è il valore passato relativo al campo <category_id> --}}
                     @endforeach
                 </select>
 
