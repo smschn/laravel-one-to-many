@@ -15,7 +15,8 @@
                 <select id="categoryId" name="category_id" class="form-control @error('category_id') is-invalid @enderror">
                     <option {{(old('category_id')=="")?'selected':''}} value="">No category selected</option>
                     @foreach ($categories as $category)
-                        <option {{(old('category_id', $post->category_id)==$category->id)?'selected':''}} value="{{$category->id}}">{{$category->name}}</option> {{-- value è il valore passato relativo al campo <category_id> --}}
+                        {{-- usare doppio parametro con <old()> e operatore ternario per precompilare correttamente la <select> --}}
+                        <option {{(old('category_id', $post->category_id)==$category->id)?'selected':''}} value="{{$category->id}}">{{$category->name}}</option>
                     @endforeach
                 </select>
 

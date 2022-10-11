@@ -94,7 +94,8 @@ class PostController extends Controller
         $request->validate(
             [
                 'title' => 'required|max:255|min:5',
-                'content' => 'required|max:65535|min:5'
+                'content' => 'required|max:65535|min:5',
+                'category_id' => 'nullable|exists:categories,id' // aggiungo validazione della nuova colonna (foreign key).
             ]
         );
         $data = $request->all();
