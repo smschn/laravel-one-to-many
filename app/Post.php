@@ -14,8 +14,9 @@ class Post extends Model
     ];
 
     // aggiungo la relazione one (categories) to many (posts).
-    // la funzione ha il nome della tabella con cui sussiste la relazione.
-    public function categories() {
+    // la funzione ha il nome della tabella con cui sussiste la relazione, al singolare (per ogni post ho una sola categoria).
+    // si può accedere a questa funzione come se fosse un normale attributo\proprietà del singolo oggetto <post>.
+    public function category() {
         return $this->belongsTo('App\Category'); // ritorno il model della tabella con cui c'è la relazione.
     }
 }
