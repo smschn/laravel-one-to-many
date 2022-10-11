@@ -16,7 +16,7 @@
             <p>{{$post->content}}</p>
         </div>
         
-        <a href="{{route('admin.posts.index')}}" class="btn btn-primary">Return to index</a>
+        <a href="{{route('admin.posts.index')}}" class="btn btn-primary">Back to index</a>
 
     </div>
 

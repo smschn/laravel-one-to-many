@@ -78,7 +78,8 @@ class PostController extends Controller
      */
     public function edit(Post $post) // utilizzo la dependency injection.
     {
-        return view('admin.posts.edit', compact('post'));
+        $categories = Category::all(); // recupero tutte le categorie dal db e le passo alla view <edit> assieme al <post>.
+        return view('admin.posts.edit', compact('post', 'categories'));
     }
 
     /**
