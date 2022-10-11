@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use App\Post; // importo il model post per poterlo usare in questo file.
+use App\Post; // importo il model <post> per poterlo usare in questo file.
+use App\Category; // importo il model <category> per poterlo usare in questo file.
 use Illuminate\Support\Str; // importo questa classe per poterla usare nella creazione dello <slug>.
 
 class PostController extends Controller
@@ -29,7 +30,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create');
+        // recupero le categorie (importando il model) e le passo alla view <create>.
+        $categories = Category::all();
+        return view('admin.posts.create', compact('categories'));
     }
 
     /**
@@ -43,12 +46,13 @@ class PostController extends Controller
         $request->validate(
             [
                 'title' => 'required|max:255|min:5',
-                'content' => 'required|max:65535|min:5'
+                'content' => 'required|max:65535|min:5',
+                'category_id' => 'nullable|exists:categories,id' // valido le categorie in ingresso: posso non averne selezionata alcuna (nullable); <exists>: esistere la tabella <categories> con la colonna <id>.
             ]
         );
         $data = $request->all();
         $newPost = new Post();
-        $newPost->fill($data);
+        $newPost->fill($data); // ricorda: aggiungi nella $fillable del model <post> la colonna <category_id> affinché fill() funzioni correttamente.
         $newSlug = $this->createSlug($newPost->title); // ricorda: usare $this-> dentro le classi; creo un nuovo slug richiamando la funzione.
         $newPost->slug = $newSlug; // assegno il nuovo slug al nuovo post.
         $newPost->save();

@@ -9,6 +9,7 @@ class Post extends Model
     protected $fillable = [
         'title',
         'content',
-        'slug'
+        'slug',
+        'category_id' // aggiungere la nuova colonna della foreign key affinché funzioni il metodo fill() dentro la store() del controller dei post.
     ];
 }
