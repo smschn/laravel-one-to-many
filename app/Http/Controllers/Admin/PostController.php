@@ -47,7 +47,7 @@ class PostController extends Controller
             [
                 'title' => 'required|max:255|min:5',
                 'content' => 'required|max:65535|min:5',
-                'category_id' => 'nullable|exists:categories,id' // valido le categorie in ingresso: posso non averne selezionata alcuna (nullable); <exists>: esistere la tabella <categories> con la colonna <id>.
+                'category_id' => 'nullable|exists:categories,id' // valido le categorie in ingresso: posso non averne selezionata alcuna (nullable); <exists>: deve esistere la tabella <categories> con la colonna <id>.
             ]
         );
         $data = $request->all();
